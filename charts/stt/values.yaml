@@ -1,0 +1,38 @@
+replicaCount: 1
+
+image:
+  repository: nvcr.io/nvidia/vllm
+  tag: "26.01-py3"
+  pullPolicy: IfNotPresent
+
+model:
+  id: openai/whisper-large-v3
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  host: spark-b0f2.local
+  path: /convene-stt(/|$)(.*)
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+
+resources:
+  limits:
+    nvidia.com/gpu: 1
+    memory: 32Gi
+  requests:
+    memory: 16Gi
+
+persistence:
+  hostPath: /home/jondyer3/.cache/huggingface
+
+vllm:
+  extraArgs: []

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: stt
+description: Whisper Large V3 Speech-to-Text via vLLM on DGX Spark
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

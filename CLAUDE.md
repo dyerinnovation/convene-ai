@@ -115,6 +115,10 @@ Phase 1 — Listen & Extract. The agent dials into meetings, transcribes, extrac
 - See `claude_docs/Memory_Architecture.md` for the four-layer memory system design and ORM-to-domain conversion patterns
 - See `claude_docs/Service_Patterns.md` for service layer conventions (health endpoints, lifespan, settings, DI, route organization)
 
+## Infrastructure
+- See `claude_docs/DGX_Spark_Reference.md` for DGX Spark connection details, K8s patterns, and deployment gotchas
+- See `charts/stt/` for the Whisper STT Helm chart deployed on DGX Spark
+
 ## CoWork Coordination
 - See `docs/TASKLIST.md` for the ordered development task queue
 - See `docs/cowork-tasks/` for scheduled task instructions

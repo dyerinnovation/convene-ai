@@ -12,12 +12,15 @@
 ## Latest Handoff
 
 **Author:** Jonathan
-**Date:** {initial setup date}
-**What I did:** Set up CoWork scheduled tasks and coordination files. Repo is ready for the first automated build sprint.
+**Date:** 2026-02-27
+**What I did:** Bootstrapped the entire monorepo — all packages, services, domain models, provider implementations, ORM models, Alembic config, tests (48 passing). Fixed CoWork doc references and updated VISION.md with agent-to-agent concept.
 **Branch:** main
-**Merge status:** N/A — working directly on main for initial setup
-**Warnings:** None — clean slate. First scheduled run should pick up "Initialize uv workspace with root pyproject.toml" from ROADMAP.md.
-**Dependencies introduced:** None yet
+**Merge status:** N/A — working directly on main for bootstrap
+**Warnings:**
+- Initial Alembic migration has NOT been generated yet — run `docker compose up -d` then `uv run alembic revision --autogenerate -m "initial"` before first use
+- Provider implementations are structurally complete but untested against live APIs (requires API keys)
+- The `from __future__ import annotations` + Pydantic v2 pattern requires `model_rebuild()` calls — see `events/definitions.py` for the pattern
+**Dependencies introduced:** pydantic, sqlalchemy, asyncpg, pgvector, alembic, fastapi, uvicorn, redis, httpx, websockets, anthropic, twilio, pydantic-settings, ruff, mypy, pytest, pytest-asyncio, pytest-cov
 
 ---
 

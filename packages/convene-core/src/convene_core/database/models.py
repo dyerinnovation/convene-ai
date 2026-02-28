@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from datetime import date, datetime  # noqa: TC003
 from uuid import UUID, uuid4
 
 import sqlalchemy as sa
@@ -11,9 +11,6 @@ from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from convene_core.database.base import Base
-
-if TYPE_CHECKING:
-    from datetime import date, datetime
 
 
 class MeetingORM(Base):

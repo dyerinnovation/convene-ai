@@ -47,6 +47,28 @@ Convene AI is a voice-first AI agent that:
 
 **Phase 4 — Specialize & Orchestrate**: Multiple agent voices with specialized roles join different meeting types. The Scrum agent facilitates standups. The Decision agent tracks and reminds. The Ops agent coordinates cross-team dependencies.
 
+### Giving Agents a Seat at the Table
+
+Convene isn't just an AI that joins your meetings — it's infrastructure that gives *any* AI agent the ability to call into meetings. Convene is the bridge between agents and human meetings on any platform.
+
+**The architecture that makes this possible:** Convene's phone dial-in approach (Twilio) means any agent can join any meeting without platform-specific SDKs. Convene handles the hard parts — initiating the call, managing the audio pipeline, running STT/TTS, enforcing speaking protocols — so that external agents only need to connect to Convene's API and say what they want to contribute.
+
+**How it works:** An external agent registers as a meeting participant via the Convene API, specifying what it wants to say and/or listen for. Convene dials into the meeting, gives the agent a voice through TTS, and returns structured data (transcript, extracted tasks, decisions) back to the agent.
+
+**Concrete examples of agents that would use Convene to join meetings:**
+
+- **OpenClaw** (openclaw.ai) — An open-source personal AI assistant with voice capabilities and multi-channel support. OpenClaw could use Convene to join your morning standup and deliver your personal task updates on your behalf when you're unavailable.
+
+- **CoWork scheduled tasks** — Overnight build agents that implement roadmap items could call into morning standups via Convene to report what was built, what tests passed, and what blockers were hit.
+
+- **Research agents** (Perplexity, browsing agents) — Could join project debriefs via Convene to share findings from overnight research, summarize competitive intel, or present data analysis.
+
+- **CI/CD pipeline agents** — Could join sprint demos to report deployment status, test coverage changes, and release notes — speaking directly to the team instead of posting to a Slack channel nobody reads.
+
+**Future: The Meeting Access API.** Convene will expose an API endpoint where external agents register as meeting participants, specify what they want to say or listen for, and receive structured data back. This transforms Convene from a single AI meeting assistant into the **meeting access layer for the agent ecosystem** — the standard way AI agents participate in human meetings.
+
+The moat here is that building reliable meeting participation (audio pipeline, turn-taking, speaking protocol, platform compatibility) is genuinely hard infrastructure work. By solving it once, Convene becomes the Rails-for-meeting-access that every agent builder uses rather than rebuilding from scratch.
+
 ---
 
 ## Why Now

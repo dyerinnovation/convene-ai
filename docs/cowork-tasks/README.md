@@ -7,7 +7,7 @@ This directory contains version-controlled instructions for CoWork scheduled tas
 CoWork scheduled tasks are configured in the Claude Desktop app with minimal prompt instructions that simply point to these files:
 
 ```
-Follow the instructions in docs/scheduled-tasks/daily-build.md exactly.
+Follow the instructions in docs/cowork-tasks/daily-build.md exactly.
 ```
 
 The detailed logic lives here in the repo, not in the CoWork UI. This gives you:
@@ -31,7 +31,7 @@ These files (in `docs/`) enable sync between you and the scheduled tasks:
 
 | File | Purpose | Who writes |
 |---|---|---|
-| `ROADMAP.md` | Ordered task queue | You (CoWork checks items off) |
+| `TASKLIST.md` | Ordered task queue | You (CoWork checks items off) |
 | `PROGRESS.md` | Append-only development log | CoWork daily build |
 | `HANDOFF.md` | Shift change notes | Both you and CoWork |
 | `DAILY_BRIEF.md` | Morning summary for review | CoWork daily review |

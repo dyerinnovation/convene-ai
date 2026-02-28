@@ -22,12 +22,12 @@ Copy the following files from this package into your Convene AI repo:
 ```
 convene-ai/
 ├── docs/
-│   ├── ROADMAP.md                          # Ordered task checklist (your task queue)
+│   ├── TASKLIST.md                          # Ordered task checklist (your task queue)
 │   ├── PROGRESS.md                         # Running log of completed work
 │   ├── HANDOFF.md                          # Shift-change notes between you and CoWork
 │   ├── WEEKLY_REVIEW.md                    # Architecture review output (auto-generated)
 │   ├── DAILY_BRIEF.md                      # Morning briefing output (auto-generated)
-│   └── scheduled-tasks/
+│   └── cowork-tasks/
 │       ├── README.md                       # Explains the scheduling pattern
 │       ├── daily-build.md                  # Instructions for the daily build sprint
 │       ├── daily-review.md                 # Instructions for the daily review brief
@@ -64,7 +64,7 @@ git push origin main
 5. In the **Prompt Instructions** field, paste this exact text:
 
 ```
-Follow the instructions in docs/scheduled-tasks/daily-build.md exactly.
+Follow the instructions in docs/cowork-tasks/daily-build.md exactly.
 Do not deviate from the process described in that file.
 Read CLAUDE.md first for project conventions.
 ```
@@ -91,7 +91,7 @@ Read CLAUDE.md first for project conventions.
 2. Prompt Instructions:
 
 ```
-Follow the instructions in docs/scheduled-tasks/daily-review.md exactly.
+Follow the instructions in docs/cowork-tasks/daily-review.md exactly.
 Read CLAUDE.md first for project conventions.
 ```
 
@@ -113,7 +113,7 @@ Read CLAUDE.md first for project conventions.
 2. Prompt Instructions:
 
 ```
-Follow the instructions in docs/scheduled-tasks/weekly-architecture-review.md exactly.
+Follow the instructions in docs/cowork-tasks/weekly-architecture-review.md exactly.
 Read CLAUDE.md first for project conventions.
 ```
 
@@ -126,15 +126,15 @@ Here's what a typical day looks like once everything is running:
 ### The night before (you)
 1. Finish your Claude Code session working on Convene AI
 2. Update `docs/HANDOFF.md` with what you did and any warnings for the next session
-3. If you worked on something in ROADMAP.md, check it off
+3. If you worked on something in TASKLIST.md, check it off
 4. Commit and push to `main`
 5. Close your laptop (or leave it open with Claude Desktop running)
 
 ### 7:00 AM (CoWork — Daily Build Sprint)
 1. Pulls latest `main`
-2. Reads HANDOFF.md, PROGRESS.md, and ROADMAP.md
+2. Reads HANDOFF.md, PROGRESS.md, and TASKLIST.md
 3. Creates a new branch: `scheduled/YYYY-MM-DD-{feature-slug}`
-4. Picks the next unchecked, unlocked item from ROADMAP.md
+4. Picks the next unchecked, unlocked item from TASKLIST.md
 5. Implements it (code, tests, type checking)
 6. Updates PROGRESS.md with what was done
 7. Updates HANDOFF.md with notes for you
@@ -158,14 +158,14 @@ Here's what a typical day looks like once everything is running:
    git branch -d scheduled/2026-02-27-assemblyai-stt
    ```
 4. If something needs fixing, open a Claude Code session on the branch and iterate
-5. Optionally update ROADMAP.md to reorder priorities or add items
+5. Optionally update TASKLIST.md to reorder priorities or add items
 6. Commit and push — you're set for tomorrow's sprint
 
 ### Friday 4:00 PM (CoWork — Weekly Architecture Review)
 1. Reviews entire codebase against CLAUDE.md design principles
 2. Checks test coverage, type safety, provider abstraction consistency
 3. Writes `docs/WEEKLY_REVIEW.md` with findings and priorities for next week
-4. You read it over the weekend or Monday morning and adjust ROADMAP.md accordingly
+4. You read it over the weekend or Monday morning and adjust TASKLIST.md accordingly
 
 ---
 
@@ -173,7 +173,7 @@ Here's what a typical day looks like once everything is running:
 
 ### Lock items you're actively working on
 
-In `ROADMAP.md`, mark items you're touching so the scheduled task skips them:
+In `TASKLIST.md`, mark items you're touching so the scheduled task skips them:
 
 ```markdown
 - [ ] 🔒 AudioPipeline transcoding (IN PROGRESS — Jonathan)
@@ -208,14 +208,14 @@ refactor the audio format constants into convene-core tomorrow.
 
 ### Modifying what the daily build does
 
-Since the real instructions live in `docs/scheduled-tasks/daily-build.md`, just edit that file:
+Since the real instructions live in `docs/cowork-tasks/daily-build.md`, just edit that file:
 
 ```bash
 # Edit the instructions
-vim docs/scheduled-tasks/daily-build.md
+vim docs/cowork-tasks/daily-build.md
 
 # Commit the change
-git add docs/scheduled-tasks/daily-build.md
+git add docs/cowork-tasks/daily-build.md
 git commit -m "Update daily build: add integration test step"
 git push origin main
 ```
@@ -226,7 +226,7 @@ The next morning's scheduled run will automatically use the updated instructions
 
 ```bash
 git checkout -b experiment/new-build-strategy
-# Edit docs/scheduled-tasks/daily-build.md with experimental instructions
+# Edit docs/cowork-tasks/daily-build.md with experimental instructions
 git commit -am "Experiment: have daily build focus on test coverage"
 git push origin experiment/new-build-strategy
 ```
@@ -248,10 +248,10 @@ Your laptop was probably asleep or Claude Desktop was closed. CoWork will run mi
 These are append-only files, so conflicts should be rare. If they happen, the scheduled task is instructed to resolve by keeping both versions. Worst case, you resolve manually — these are just coordination docs, not code.
 
 ### Task is implementing the wrong thing
-Check `ROADMAP.md` — is the ordering correct? Is the item you expected it to pick actually the next unchecked, unlocked item? Update the roadmap and push.
+Check `TASKLIST.md` — is the ordering correct? Is the item you expected it to pick actually the next unchecked, unlocked item? Update the roadmap and push.
 
 ### Token usage seems high
-Check if the daily build task is trying to do too much. The one-item-per-session constraint is enforced in `daily-build.md`. If a single item is too large (e.g., "Implement entire audio service"), break it into smaller sub-items in ROADMAP.md.
+Check if the daily build task is trying to do too much. The one-item-per-session constraint is enforced in `daily-build.md`. If a single item is too large (e.g., "Implement entire audio service"), break it into smaller sub-items in TASKLIST.md.
 
 ---
 
@@ -260,9 +260,9 @@ Check if the daily build task is trying to do too much. The one-item-per-session
 | File | Purpose | Who writes it |
 |---|---|---|
 | `CLAUDE.md` | Project conventions and architecture | You (initial setup) |
-| `docs/ROADMAP.md` | Ordered task queue | You (CoWork checks items off) |
+| `docs/TASKLIST.md` | Ordered task queue | You (CoWork checks items off) |
 | `docs/PROGRESS.md` | Running development log | CoWork (you review) |
 | `docs/HANDOFF.md` | Shift change notes | Both |
 | `docs/DAILY_BRIEF.md` | Morning summary | CoWork (daily review task) |
 | `docs/WEEKLY_REVIEW.md` | Architecture assessment | CoWork (weekly review task) |
-| `docs/scheduled-tasks/*.md` | Task instructions (version controlled) | You |
+| `docs/cowork-tasks/*.md` | Task instructions (version controlled) | You |

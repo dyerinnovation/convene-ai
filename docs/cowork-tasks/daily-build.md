@@ -37,10 +37,10 @@
 
 ## Task Selection
 
-1. Open `docs/ROADMAP.md`
+1. Open `docs/TASKLIST.md`
 2. Find the **first unchecked item** (`- [ ]`) that does NOT have a 🔒 lock icon
 3. If all items in the current phase are complete, move to the next phase
-4. If all items are complete or locked, write to HANDOFF.md: "All roadmap items complete or locked. Waiting for Jonathan to add new items or unlock." Then stop.
+4. If all items are complete or locked, write to HANDOFF.md: "All tasklist items complete or locked. Waiting for Jonathan to add new items or unlock." Then stop.
 
 **Rules:**
 - Pick exactly ONE item per session
@@ -86,7 +86,7 @@
 
 ## Post-implementation
 
-1. Check off the completed item in `docs/ROADMAP.md`:
+1. Check off the completed item in `docs/TASKLIST.md`:
    ```markdown
    - [x] AssemblyAI streaming STT implementation   ← change [ ] to [x]
    ```

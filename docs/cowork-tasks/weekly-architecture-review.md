@@ -20,7 +20,7 @@
 3. Read the week's progress:
    ```
    Read docs/PROGRESS.md — focus on entries from the last 7 days.
-   Read docs/ROADMAP.md — understand current phase and completion status.
+   Read docs/TASKLIST.md — understand current phase and completion status.
    ```
 
 4. Analyze the codebase:

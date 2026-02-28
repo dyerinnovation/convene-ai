@@ -1,4 +1,4 @@
-# Convene AI — Development Roadmap
+# Convene AI — Development Task List
 
 > This file is the task queue for both manual and scheduled development sessions.
 > The daily build sprint picks the next unchecked, unlocked item and implements it.
@@ -12,33 +12,33 @@
 
 ## Phase 1A: Foundation — Monorepo & Domain Models (Steps 1-2)
 
-- [ ] Initialize uv workspace with root pyproject.toml
-- [ ] Create package directory structure (convene-core, convene-providers, convene-memory)
-- [ ] Create service directory structure (api-server, audio-service, task-engine, worker)
-- [ ] Set up docker-compose.yml with PostgreSQL 16 (pgvector) and Redis 7
-- [ ] Create .env.example with all environment variables
-- [ ] Set up ruff.toml and mypy.ini with strict settings
-- [ ] Create CI workflow (.github/workflows/ci.yml) — ruff, mypy, pytest
-- [ ] Implement Meeting Pydantic model with validators
-- [ ] Implement Participant Pydantic model
-- [ ] Implement Task Pydantic model with status transition validators
-- [ ] Implement Decision Pydantic model
-- [ ] Implement TranscriptSegment Pydantic model
-- [ ] Implement AgentConfig Pydantic model
-- [ ] Implement event definitions (convene-core/events/definitions.py)
-- [ ] Create SQLAlchemy 2.0 ORM models for all domain entities
-- [ ] Set up Alembic configuration with async support
+- [x] Initialize uv workspace with root pyproject.toml
+- [x] Create package directory structure (convene-core, convene-providers, convene-memory)
+- [x] Create service directory structure (api-server, audio-service, task-engine, worker)
+- [x] Set up docker-compose.yml with PostgreSQL 16 (pgvector) and Redis 7
+- [x] Create .env.example with all environment variables
+- [x] Set up ruff.toml and mypy.ini with strict settings
+- [x] Create CI workflow (.github/workflows/ci.yml) — ruff, mypy, pytest
+- [x] Implement Meeting Pydantic model with validators
+- [x] Implement Participant Pydantic model
+- [x] Implement Task Pydantic model with status transition validators
+- [x] Implement Decision Pydantic model
+- [x] Implement TranscriptSegment Pydantic model
+- [x] Implement AgentConfig Pydantic model
+- [x] Implement event definitions (convene-core/events/definitions.py)
+- [x] Create SQLAlchemy 2.0 ORM models for all domain entities
+- [x] Set up Alembic configuration with async support
 - [ ] Create initial Alembic migration
 
 ## Phase 1B: Provider Interfaces & Implementations (Step 3)
 
-- [ ] Implement STTProvider abstract base class
-- [ ] Implement TTSProvider abstract base class
-- [ ] Implement LLMProvider abstract base class
-- [ ] Implement AssemblyAI streaming STT provider (WebSocket + speaker diarization)
-- [ ] Implement Deepgram STT provider (alternative provider)
-- [ ] Implement Anthropic LLM provider (Claude tool_use for structured extraction)
-- [ ] Implement provider registry with factory pattern
+- [x] Implement STTProvider abstract base class
+- [x] Implement TTSProvider abstract base class
+- [x] Implement LLMProvider abstract base class
+- [x] Implement AssemblyAI streaming STT provider (WebSocket + speaker diarization)
+- [x] Implement Deepgram STT provider (alternative provider)
+- [x] Implement Anthropic LLM provider (Claude tool_use for structured extraction)
+- [x] Implement provider registry with factory pattern
 - [ ] Write integration tests for provider registry
 
 ## Phase 1C: Twilio Audio Pipeline (Step 4)
@@ -93,4 +93,22 @@
 
 ## Notes
 
-{Add notes here about roadmap changes, reordering decisions, or items to add}
+### CoWork Edit Protocol
+
+**Task selection:** CoWork picks the first unchecked (`- [ ]`), unlocked (no 🔒) item in the current phase.
+
+**Completion registration:**
+1. Check off the item: `- [ ]` → `- [x]`
+2. Append an entry to `docs/PROGRESS.md` (never overwrite previous entries)
+3. Update `docs/HANDOFF.md` with shift-change notes
+
+**Branch naming:** `scheduled/YYYY-MM-DD-{slug}` (e.g., `scheduled/2026-02-27-pydantic-models`)
+
+**Lock protocol:** Only Jonathan adds or removes 🔒. CoWork must never lock or unlock items.
+
+**Quality gate:** All of the following must pass before checking off an item:
+- `uv run ruff check .` — no lint errors
+- `uv run mypy --strict .` — no type errors
+- `uv run pytest -x -v` — all tests pass
+
+If quality checks fail after 3 fix attempts, document the failure in PROGRESS.md, note it as a blocker in HANDOFF.md, and stop. Do not check off the item.

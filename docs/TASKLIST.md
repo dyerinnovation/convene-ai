@@ -28,7 +28,7 @@
 - [x] Implement event definitions (convene-core/events/definitions.py)
 - [x] Create SQLAlchemy 2.0 ORM models for all domain entities
 - [x] Set up Alembic configuration with async support
-- [ ] Create initial Alembic migration
+- [x] Create initial Alembic migration
 
 ## Phase 1B: Provider Interfaces & Implementations (Step 3)
 

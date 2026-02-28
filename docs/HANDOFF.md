@@ -13,11 +13,11 @@
 
 **Author:** Jonathan
 **Date:** 2026-02-27
-**What I did:** Added 4 local/free-tier providers (WhisperSTT, PiperTTS, OllamaLLM, GroqLLM), mock providers for unit testing, provider setup documentation for all 10 providers, and updated the registry. 96 tests passing.
+**What I did:** Generated initial Alembic migration (6 tables created in PostgreSQL). Fixed ORM model datetime imports for SQLAlchemy annotation resolution. All Phase 1A tasks now complete.
 **Branch:** main
 **Merge status:** N/A — working directly on main
 **Warnings:**
-- Initial Alembic migration has NOT been generated yet — run `docker compose up -d` then `uv run alembic revision --autogenerate -m "initial"` before first use
+- Docker must be running for database access: `docker compose up -d`
 - Optional deps must be installed separately: `uv sync --all-extras` to get faster-whisper, piper-tts, groq
 - The `from __future__ import annotations` + Pydantic v2 pattern requires `model_rebuild()` calls — see `events/definitions.py`
 - `tests/__init__.py` files were removed from all packages to fix namespace collision — do NOT re-add them

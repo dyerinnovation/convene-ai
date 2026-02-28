@@ -8,6 +8,55 @@
 
 <!-- New entries go at the top -->
 
+## 2026-02-27 — Local/Free Providers, Mock Providers, Provider Docs
+
+**Roadmap items:** Local providers for API-free development, mock providers for testing, provider setup documentation
+**Branch:** main
+**Author:** Jonathan (manual session with Claude Code)
+
+### Changes
+
+**New providers (4):**
+- `WhisperSTT` — Local STT using faster-whisper (CTranslate2), no API key, CPU-optimized int8 inference
+- `PiperTTS` — Local TTS using Piper ONNX neural voices, no API key, on-device synthesis
+- `OllamaLLM` — Local LLM via Ollama REST API (httpx), no API key, default model: mistral
+- `GroqLLM` — Free-tier cloud LLM using Groq SDK (AsyncGroq), LPU hardware, default model: llama-3.1-8b-instant
+
+**Mock providers for testing:**
+- `MockSTT`, `MockTTS`, `MockLLM` — Deterministic test doubles that return pre-configured fixtures
+
+**Registry updates:**
+- Registered all 4 new providers (whisper, piper, ollama, groq) — total: 3 STT, 3 TTS, 3 LLM
+- Updated `__init__.py` re-exports for stt/, tts/, llm/ subpackages
+
+**Provider documentation (10 files in docs/providers/):**
+- README.md — Provider matrix with comparison table
+- Individual setup guides for all 10 providers (whisper, assemblyai, deepgram, piper, cartesia, elevenlabs, ollama, groq, anthropic)
+
+**Configuration updates:**
+- `.env.example` — Added OLLAMA_HOST, OLLAMA_MODEL, GROQ_API_KEY, GROQ_MODEL
+- `pyproject.toml` — Added optional deps: whisper, piper, groq
+- Removed `tests/__init__.py` from all packages to fix namespace collision with multiple test directories
+
+### Quality Check Results
+- ruff: ✅ No issues
+- ruff format: ✅ All files formatted
+- pytest: ✅ 96 passed, 0 failed (48 original + 48 new)
+
+### Notes
+- Initial Alembic migration still not generated (Docker not running)
+- Optional deps (faster-whisper, piper-tts, groq) must be installed with `uv sync --all-extras` for full test coverage
+- Groq provider requires free API key from console.groq.com (no credit card)
+
+### Blockers
+None
+
+### Next Up
+- Start Docker and generate initial Alembic migration
+- Write integration tests for providers (requires running Ollama, Groq API key)
+
+---
+
 ## 2026-02-27 — Phase 1A Bootstrap: Monorepo & Domain Models
 
 **Roadmap items:** All Phase 1A items (16 of 17) + Phase 1B provider ABCs and implementations (7 of 8)

@@ -83,8 +83,8 @@
 
 ## Phase 2: Voice Output (Future)
 
-- [ ] Implement Cartesia TTS provider
-- [ ] Implement ElevenLabs TTS provider
+- [x] Implement Cartesia TTS provider
+- [x] Implement ElevenLabs TTS provider
 - [ ] Implement bidirectional audio pipeline (Twilio → STT + TTS → Twilio)
 - [ ] Implement agent speaking logic (when to interject, progress reports)
 - [ ] Implement voice activity detection for turn-taking

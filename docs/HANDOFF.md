@@ -13,14 +13,16 @@
 
 **Author:** Jonathan
 **Date:** 2026-02-27
-**What I did:** Bootstrapped the entire monorepo — all packages, services, domain models, provider implementations, ORM models, Alembic config, tests (48 passing). Fixed CoWork doc references and updated VISION.md with agent-to-agent concept.
+**What I did:** Added 4 local/free-tier providers (WhisperSTT, PiperTTS, OllamaLLM, GroqLLM), mock providers for unit testing, provider setup documentation for all 10 providers, and updated the registry. 96 tests passing.
 **Branch:** main
-**Merge status:** N/A — working directly on main for bootstrap
+**Merge status:** N/A — working directly on main
 **Warnings:**
 - Initial Alembic migration has NOT been generated yet — run `docker compose up -d` then `uv run alembic revision --autogenerate -m "initial"` before first use
-- Provider implementations are structurally complete but untested against live APIs (requires API keys)
-- The `from __future__ import annotations` + Pydantic v2 pattern requires `model_rebuild()` calls — see `events/definitions.py` for the pattern
-**Dependencies introduced:** pydantic, sqlalchemy, asyncpg, pgvector, alembic, fastapi, uvicorn, redis, httpx, websockets, anthropic, twilio, pydantic-settings, ruff, mypy, pytest, pytest-asyncio, pytest-cov
+- Optional deps must be installed separately: `uv sync --all-extras` to get faster-whisper, piper-tts, groq
+- The `from __future__ import annotations` + Pydantic v2 pattern requires `model_rebuild()` calls — see `events/definitions.py`
+- `tests/__init__.py` files were removed from all packages to fix namespace collision — do NOT re-add them
+- Groq is recommended for local dev (free tier, fastest inference, no credit card needed)
+**Dependencies introduced:** faster-whisper (optional), piper-tts (optional), groq (optional)
 
 ---
 
